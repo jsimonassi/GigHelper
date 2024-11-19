@@ -1,2 +1,2 @@
 # GigHelper
-Automatizador de troca de timbre + leitor de cifras
+Automatizador de troca de timbres + leitor de cifras
