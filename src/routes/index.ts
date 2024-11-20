@@ -3,6 +3,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen } from '../screens/Home';
 import { ConfigScreen } from '../screens/Config';
 import { RootStackParamList } from '../types/routes';
+import { UserGigsScreen } from '../screens/UserGigs';
+import { ShowMusicsScreen } from '../screens/ShowMusics';
+import { PlayMusicScreen } from '../screens/PlayMusic';
 
 
 const RootStack = createNativeStackNavigator<RootStackParamList>({
@@ -12,6 +15,9 @@ const RootStack = createNativeStackNavigator<RootStackParamList>({
   screens: {
     Home: HomeScreen,
     Config: ConfigScreen,
+    UserGigs: UserGigsScreen,
+    ShowMusics: ShowMusicsScreen,
+    PlayMusic: PlayMusicScreen,
   },
 });
 

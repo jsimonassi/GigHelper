@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledBackground, StyledInput, StyledTitle } from './styles';
+import { StyledBackground, StyledError, StyledInput, StyledTitle } from './styles';
 
 interface MainInputProps {
     title?: string;
@@ -7,9 +7,10 @@ interface MainInputProps {
     placeholder?: string;
     value?: string;
     onChangeText?: (text: string) => void;
+    errorText?: string;
 }
 
-export const MainInput = ({ title, keyboardType, placeholder, value, onChangeText }: MainInputProps) => {
+export const MainInput = ({ title, keyboardType, placeholder, value, onChangeText, errorText }: MainInputProps) => {
     return (
         <StyledBackground>
             <StyledTitle>{title}</StyledTitle>
@@ -19,6 +20,7 @@ export const MainInput = ({ title, keyboardType, placeholder, value, onChangeTex
                 value={value}
                 onChangeText={onChangeText}
             />
+            { errorText && <StyledError>{errorText}</StyledError>}
         </StyledBackground>
 
     );

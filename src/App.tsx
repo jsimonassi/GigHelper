@@ -16,4 +16,3 @@ function App(): React.JSX.Element {
 
 
 export default App;
-//<Button title="06" onPress={() => NativeGigHelperCore.sendControlCommand(0, 74, 127)} />

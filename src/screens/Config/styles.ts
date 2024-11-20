@@ -7,10 +7,16 @@ export const StyledBackground = styled.View`
     padding: 0 16px;
 `;
 
-export const StyledInfoScroll = styled.ScrollView`
-    margin-top: 16px;
-`;
-
 export const StyledButtonContainer = styled.View`
     margin: 16px;
+`;
+
+export const StyledSectionTitle = styled.Text`
+    ${({ theme }) => theme.typography.text1};
+    margin-top: 16px;
+    margin-bottom: 8px;
+`;
+
+export const StyledInputContainer = styled.View`
+    margin: 8px 0;
 `;

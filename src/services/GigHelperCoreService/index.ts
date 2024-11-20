@@ -1,5 +1,7 @@
+import NativeGigHelperCore from '../../../specs/NativeGigHelperCore';
+
 export const GigHelperCoreService = {
     sendControlCommand: (channel: number, knob: number, value: number) => {
-        GigHelperCoreService.sendControlCommand(channel, knob, value);
+        NativeGigHelperCore.sendControlCommand(channel, knob, value);
     },
 };
