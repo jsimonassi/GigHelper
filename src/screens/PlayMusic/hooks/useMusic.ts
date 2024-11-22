@@ -5,6 +5,7 @@ import { GigHelperCoreService } from '../../../services/GigHelperCoreService';
 export const useMusic = (currentGig: UserGig, musicIndex: number) => {
     const [currentMusicInfo, setCurrentMusicInfo] = useState(currentGig.setList[musicIndex]);
     const [currentMusicIndex, setCurrentMusicIndex] = useState(musicIndex);
+    const [lastMidiMessageSent, setLastMidiMessageSent] = useState<{timbreIndex: number, sentTime: string}>({timbreIndex: -1, sentTime: ''});
     const totalSongs = currentGig.setList.length;
 
 
@@ -12,6 +13,7 @@ export const useMusic = (currentGig: UserGig, musicIndex: number) => {
         const timbreData = currentMusicInfo.timbres[timbreIndex];
         if(timbreData){
             GigHelperCoreService.sendControlCommand(timbreData.midiValue[0], timbreData.midiValue[1], timbreData.midiValue[2]);
+            setLastMidiMessageSent({timbreIndex, sentTime: new Date().toISOString()});
         }
     }, [currentMusicInfo]);
 
@@ -40,7 +42,9 @@ export const useMusic = (currentGig: UserGig, musicIndex: number) => {
         currentMusicInfo,
         currentMusicIndex,
         totalSongs,
+        lastMidiMessageSent,
         nextMusic,
         previousMusic,
+        sendMidiMessage,
     };
 };
