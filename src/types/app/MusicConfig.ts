@@ -1,4 +1,4 @@
-import { TimbreConfig } from './UserConfig';
+import { TimbreConfig } from '../../specs/NativeGigHelperCore';
 
 export interface MusicConfig {
     name: string;

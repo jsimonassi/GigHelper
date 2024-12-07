@@ -124,4 +124,9 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    def room_version = "2.6.1"
+    implementation("androidx.room:room-runtime:$room_version")
+    implementation("androidx.room:room-ktx:$room_version")
+    implementation("com.google.code.gson:gson:2.10.1")
 }
