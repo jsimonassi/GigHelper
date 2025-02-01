@@ -8,9 +8,10 @@ interface MainInputProps {
     value?: string;
     onChangeText?: (text: string) => void;
     errorText?: string;
+    disabled?: boolean;
 }
 
-export const MainInput = ({ title, keyboardType, placeholder, value, onChangeText, errorText }: MainInputProps) => {
+export const MainInput = ({ title, keyboardType, placeholder, value, onChangeText, errorText, disabled }: MainInputProps) => {
     return (
         <StyledBackground>
             <StyledTitle>{title}</StyledTitle>
@@ -19,6 +20,7 @@ export const MainInput = ({ title, keyboardType, placeholder, value, onChangeTex
                 keyboardType={keyboardType}
                 value={value}
                 onChangeText={onChangeText}
+                editable={!disabled}
             />
             { errorText && <StyledError>{errorText}</StyledError>}
         </StyledBackground>

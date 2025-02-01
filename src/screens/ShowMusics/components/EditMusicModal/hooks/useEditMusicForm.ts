@@ -4,12 +4,13 @@ import { pick, types } from 'react-native-document-picker';
 import { resolveContentUri } from '../../../../../utils/contentResolver';
 import { TimbreConfig } from '../../../../../specs/NativeGigHelperCore';
 
-export const useNewMusicForm = () => {
-    const [newMusic, setNewMusic] = useState<MusicConfig>({
+export const useEditMusicForm = (currentMusicData: MusicConfig | null) => {
+    const [newMusic, setNewMusic] = useState<MusicConfig>(currentMusicData || {
         name: '',
         pdfChordsPath: '',
         timbres: [],
     });
+
     const [error, setError] = useState('');
 
     const handleNameChange = (name: string) => {

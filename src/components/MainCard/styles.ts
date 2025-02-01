@@ -1,10 +1,12 @@
 import styled from 'styled-components/native';
+import { assets } from '../../assets';
 
 export const StyledCardBackground = styled.TouchableOpacity<StyledCardBackgroundProps>`
     background-color: ${({ theme, isSelected }) => isSelected ? theme.palette.tertiaryColor : theme.palette.secondaryColor};
     border-radius: 8px;
     padding: 16px;
     margin: 8px 0;
+    flex-direction: row;
 `;
 
 export const StyledCardTitle = styled.Text`
@@ -16,6 +18,24 @@ export const StyledDescription = styled.Text`
     margin-top: 8px;
     color: ${({ theme }) => theme.palette.primaryColor};
 `;
+
+export const StyledLeftSizeView = styled.View`
+    flex: 1;
+`;
+
+export const StyledRightSizeView = styled.View`
+    flex: 1;
+    align-items: flex-end;
+    justify-content: center;
+`;
+
+export const StyledEditImageIcon = styled.Image.attrs({
+    source: assets.images.editIcon,
+})`
+    width: 20px;
+    height: 20px;
+`;
+
 
 interface StyledCardBackgroundProps {
     isSelected: boolean;
