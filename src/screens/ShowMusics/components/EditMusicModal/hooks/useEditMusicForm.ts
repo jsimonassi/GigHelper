@@ -1,15 +1,36 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { MusicConfig } from '../../../../../types/app/MusicConfig';
 import { pick, types } from 'react-native-document-picker';
 import { resolveContentUri } from '../../../../../utils/contentResolver';
 import { TimbreConfig } from '../../../../../specs/NativeGigHelperCore';
 
 export const useEditMusicForm = (currentMusicData: MusicConfig | null) => {
-    const [newMusic, setNewMusic] = useState<MusicConfig>(currentMusicData || {
+    console.log('useEditMusicForm', currentMusicData);
+    const [editedMusic, setEditMusic] = useState<MusicConfig>(currentMusicData || {
         name: '',
         pdfChordsPath: '',
         timbres: [],
+        id: '',
+        index: 0,
     });
+
+    const resetStates = useCallback(() => {
+        if (currentMusicData) {
+            setEditMusic(currentMusicData);
+        } else {
+            setEditMusic({
+                name: '',
+                pdfChordsPath: '',
+                timbres: [],
+                id: '',
+                index: 0,
+            });
+        }
+    }, [currentMusicData]);
+
+    useEffect(() => {
+        resetStates();
+    }, [currentMusicData, resetStates]);
 
     const [error, setError] = useState('');
 
@@ -20,8 +41,8 @@ export const useEditMusicForm = (currentMusicData: MusicConfig | null) => {
         }else{
             setError('');
         }
-        setNewMusic({
-            ...newMusic,
+        setEditMusic({
+            ...editedMusic,
             name,
         });
     };
@@ -33,8 +54,8 @@ export const useEditMusicForm = (currentMusicData: MusicConfig | null) => {
             });
             console.log(res);
             if (res.length && res[0].uri && res[0].name) {
-                setNewMusic({
-                    ...newMusic,
+                setEditMusic({
+                    ...editedMusic,
                     pdfChordsPath: await resolveContentUri(res[0].uri, res[0].name),
                 });
             }
@@ -44,25 +65,25 @@ export const useEditMusicForm = (currentMusicData: MusicConfig | null) => {
     };
 
     const addTimbre = (timbre: TimbreConfig) => {
-        setNewMusic({
-            ...newMusic,
-            timbres: [...newMusic.timbres, timbre],
+        setEditMusic({
+            ...editedMusic,
+            timbres: [...editedMusic.timbres, timbre],
         });
     };
 
     const removeTimbre = (timbre: TimbreConfig) => {
-        setNewMusic({
-            ...newMusic,
-            timbres: newMusic.timbres.filter((t) => t !== timbre),
+        setEditMusic({
+            ...editedMusic,
+            timbres: editedMusic.timbres.filter((t) => t !== timbre),
         });
     };
 
     const hasTimbre = (timbre: TimbreConfig | undefined) => {
-        return newMusic.timbres.some((t) => t.name === timbre?.name);
+        return editedMusic.timbres.some((t) => t.name === timbre?.name);
     };
 
     return {
-        newMusic,
+        editedMusic,
         error,
         handleNameChange,
         handleChordFile,

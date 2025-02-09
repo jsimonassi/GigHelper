@@ -17,7 +17,7 @@ interface NewGigModalProps {
 
 export const NewMusicModal = ({ visible, onClose, onSave }: NewGigModalProps) => {
 
-    const { newMusic, handleNameChange, handleChordFile, addTimbre, removeTimbre, hasTimbre, error } = useNewMusicForm();
+    const { newMusic, handleNameChange, handleChordFile, addTimbre, removeTimbre, hasTimbre, error } = useNewMusicForm(visible);
     const { timbreSet } = useUserConfigStore();
 
     return (

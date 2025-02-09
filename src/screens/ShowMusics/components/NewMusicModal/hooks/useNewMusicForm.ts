@@ -1,16 +1,36 @@
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { MusicConfig } from '../../../../../types/app/MusicConfig';
 import { pick, types } from 'react-native-document-picker';
 import { resolveContentUri } from '../../../../../utils/contentResolver';
 import { TimbreConfig } from '../../../../../specs/NativeGigHelperCore';
+import uuid from 'react-native-uuid';
 
-export const useNewMusicForm = () => {
+export const useNewMusicForm = (isVisible: boolean) => {
     const [newMusic, setNewMusic] = useState<MusicConfig>({
         name: '',
         pdfChordsPath: '',
         timbres: [],
+        id:  uuid.v4(),
+        index: 0,
     });
     const [error, setError] = useState('');
+
+    const resetState = useCallback(() => {
+        setNewMusic({
+            name: '',
+            pdfChordsPath: '',
+            timbres: [],
+            id: uuid.v4(),
+            index: 0,
+        });
+        setError('');
+    }, []);
+
+    useEffect(() => {
+        if (!isVisible) {
+            resetState();
+        }
+    }, [isVisible, resetState]);
 
     const handleNameChange = (name: string) => {
         if (name === '') {

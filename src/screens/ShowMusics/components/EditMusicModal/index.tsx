@@ -18,7 +18,9 @@ interface EditMusicModalProps {
 
 export const EditMusicModal = ({ visible, onClose, onSave, currentMusicConfig }: EditMusicModalProps) => {
 
-    const { newMusic, handleNameChange, handleChordFile, addTimbre, removeTimbre, hasTimbre, error } = useEditMusicForm(currentMusicConfig);
+console.log('EditMusicModal', currentMusicConfig);
+
+    const { editedMusic, handleNameChange, handleChordFile, addTimbre, removeTimbre, hasTimbre, error } = useEditMusicForm(currentMusicConfig);
     const { timbreSet } = useUserConfigStore();
 
     return (
@@ -30,15 +32,15 @@ export const EditMusicModal = ({ visible, onClose, onSave, currentMusicConfig }:
                 <MainInput
                     title="Nome da música"
                     keyboardType="default"
-                    value={newMusic.name}
+                    value={editedMusic.name}
                     placeholder="Evidências"
                     onChangeText={handleNameChange}
                     errorText={error}
                     disabled
                 />
                 {
-                    newMusic.pdfChordsPath ?
-                        <StyledPathText>{ 'Cifra: ...' + newMusic.pdfChordsPath.slice(-20)}</StyledPathText> :
+                    editedMusic.pdfChordsPath ?
+                        <StyledPathText>{ 'Cifra: ...' + editedMusic.pdfChordsPath.slice(-20)}</StyledPathText> :
                         <MainButton
                             title="Selecionar cifra"
                             onPress={handleChordFile} />
@@ -66,7 +68,7 @@ export const EditMusicModal = ({ visible, onClose, onSave, currentMusicConfig }:
                 </StyledTimbreSelectorContainer>
                 <MainButton
                     title="Salvar"
-                    onPress={() => onSave(newMusic)} />
+                    onPress={() => onSave(editedMusic)} />
             </StyledInfosContainer>
         </BaseModal>
     );
