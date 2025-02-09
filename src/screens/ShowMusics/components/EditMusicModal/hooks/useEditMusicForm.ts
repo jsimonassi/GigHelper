@@ -5,7 +5,7 @@ import { resolveContentUri } from '../../../../../utils/contentResolver';
 import { TimbreConfig } from '../../../../../specs/NativeGigHelperCore';
 
 export const useEditMusicForm = (currentMusicData: MusicConfig | null) => {
-    console.log('useEditMusicForm', currentMusicData);
+
     const [editedMusic, setEditMusic] = useState<MusicConfig>(currentMusicData || {
         name: '',
         pdfChordsPath: '',

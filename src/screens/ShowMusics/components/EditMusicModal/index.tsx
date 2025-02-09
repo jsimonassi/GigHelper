@@ -18,8 +18,6 @@ interface EditMusicModalProps {
 
 export const EditMusicModal = ({ visible, onClose, onSave, currentMusicConfig }: EditMusicModalProps) => {
 
-console.log('EditMusicModal', currentMusicConfig);
-
     const { editedMusic, handleNameChange, handleChordFile, addTimbre, removeTimbre, hasTimbre, error } = useEditMusicForm(currentMusicConfig);
     const { timbreSet } = useUserConfigStore();
 
