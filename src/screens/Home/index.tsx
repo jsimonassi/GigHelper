@@ -16,6 +16,7 @@ export const HomeScreen = () => {
             <StyledTitle>GigHelper 🎵</StyledTitle>
             <StyledButtonGroup>
                 <MainButton onPress={() => navigation.navigate('UserGigs')} title="Minhas Gigs" />
+                <MainButton onPress={() => navigation.navigate('PadsView')} title="Pads" />
                 <MainButton onPress={() => navigation.navigate('Config')} title="Configuração de timbres" />
             </StyledButtonGroup>
         </StyledBackground>

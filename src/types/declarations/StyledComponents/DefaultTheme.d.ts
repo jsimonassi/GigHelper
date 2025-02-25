@@ -1,5 +1,4 @@
 import 'styled-components/native';
-import { CSSObject } from 'styled-components';
 
 type TypographyItem = Pick<CSSObject, 'fontFamily' | 'fontStyle' | 'fontWeight' | 'fontSize' | 'lineHeight' | 'color'>;
 

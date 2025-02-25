@@ -6,6 +6,7 @@ import { RootStackParamList } from '../types/routes';
 import { UserGigsScreen } from '../screens/UserGigs';
 import { ShowMusicsScreen } from '../screens/ShowMusics';
 import { PlayMusicScreen } from '../screens/PlayMusic';
+import { PadsView } from '../screens/PadsView';
 
 
 const RootStack = createNativeStackNavigator<RootStackParamList>({
@@ -16,6 +17,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>({
     Home: HomeScreen,
     Config: ConfigScreen,
     UserGigs: UserGigsScreen,
+    PadsView: PadsView,
     ShowMusics: ShowMusicsScreen,
     PlayMusic: PlayMusicScreen,
   },
