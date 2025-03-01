@@ -1,6 +1,7 @@
 package com.gighelpercore.impl.sender
 
 import android.content.Context
+import android.media.midi.MidiDevice
 import android.media.midi.MidiManager
 import android.os.Build
 import com.gighelpercore.impl.model.GigHelperMidiCommand
@@ -9,7 +10,8 @@ object MidiControlChangeSender {
 
     fun sendCommand(context: Context, gigCommand: GigHelperMidiCommand) {
         val command = gigCommand.toByteArray()
-        val midiManager = context.getSystemService(Context.MIDI_SERVICE) as MidiManager
+        val midiManager = context.getSystemService(Context.MIDI_SERVICE) as? MidiManager ?: return
+
         val devices = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             midiManager.getDevicesForTransport(MidiManager.TRANSPORT_MIDI_BYTE_STREAM).toList()
         } else {
@@ -17,15 +19,18 @@ object MidiControlChangeSender {
         }
 
         for (device in devices) {
-            val outputPortCount = device.outputPortCount
-            if (outputPortCount > 0) {
+            if (device.outputPortCount > 0) {
                 midiManager.openDevice(device, { midiDevice ->
-                    val outputPort = midiDevice.openInputPort(0)
-                    outputPort.send(command, 0, command.size)
-                    outputPort.close()
-                    midiDevice.close()
+                    midiDevice?.let { sendToDevice(it, command) }
                 }, null)
             }
         }
+    }
+
+    private fun sendToDevice(midiDevice: MidiDevice, command: ByteArray) {
+        midiDevice.openInputPort(0)?.use { outputPort ->
+            outputPort.send(command, 0, command.size)
+        }
+        midiDevice.close()
     }
 }

@@ -1,6 +1,7 @@
+import { ScrollView } from 'react-native';
 import styled from 'styled-components/native';
 
-export const StyledBackground = styled.View`
+export const StyledBackground = styled(ScrollView)`
     background-color: ${({ theme }) => theme.palette.backgroundColor};
     display: flex; 
     flex: 1;

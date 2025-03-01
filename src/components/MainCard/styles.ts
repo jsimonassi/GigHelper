@@ -7,6 +7,7 @@ export const StyledCardBackground = styled.TouchableOpacity<StyledCardBackground
     padding: 16px;
     margin: 8px 0;
     flex-direction: row;
+    flex: 1;
 `;
 
 export const StyledCardTitle = styled.Text`
