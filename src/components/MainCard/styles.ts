@@ -25,13 +25,28 @@ export const StyledLeftSizeView = styled.View`
 `;
 
 export const StyledRightSizeView = styled.View`
-    flex: 1;
     align-items: flex-end;
     justify-content: center;
+    flex-direction: row;
+    gap: 16px;
 `;
 
 export const StyledEditImageIcon = styled.Image.attrs({
     source: assets.images.editIcon,
+})`
+    width: 20px;
+    height: 20px;
+`;
+
+export const StyledUpImageIcon = styled.Image.attrs({
+    source: assets.images.up,
+})`
+    width: 20px;
+    height: 20px;
+`;
+
+export const StyledDownImageIcon = styled.Image.attrs({
+    source: assets.images.down,
 })`
     width: 20px;
     height: 20px;
